@@ -1,0 +1,31 @@
+# Linear Search
+
+Linear search is an easy way to look for a specific value in a list. It checks each item one by one. It keeps going until it finds what you're looking for or checks every item in the list.
+
+## Pseudo Code
+
+```plaintext
+function linear_search(list, target):
+    for each item in list:
+        if item == target:
+            return item
+    return null
+```
+
+## Explanation
+
+1. The function `linear_search` takes two arguments: `list` and `target`.
+2. It iterates through each item in the list.
+3. If the item is equal to the target, it returns the item.
+4. If the function goes through the entire list and doesn't find the target, it returns `null`.
+
+## Complexity Analysis
+
+-   Running time: O(n)
+    > The function has to check every item in the list.
+-   Space complexity: O(1)
+-   Worst-case time complexity: O(n)
+    > The worst-case happens when the target is not in the list, and the function has to check every item.
+-   Average-case time complexity: O(n)
+-   Best-case time complexity: O(1)
+    > The best-case happens when the target is the first item in the list.

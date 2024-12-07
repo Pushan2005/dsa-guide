@@ -1,3 +1,6 @@
+import tree from "./recursion-tree.svg";
+import Image from "next/image";
+
 # Time Complexity
 
 Time complexity is a measure of how long it takes to run an algorithm. It is expressed using asymptotic notations as a function of the input size `n`.
@@ -71,32 +74,7 @@ For the sake of understanding, we will consider a binary search recursive algori
 
 Here is what the recursive tree would look like:
 
-::: mermaid
-graph TD;
-n((n)) --> a1((n/2¹));
-n --> a2((n/2¹));
-a1 --> a11((n/2²));
-a1 --> a12((n/2²));
-a2 --> a21((n/2²));
-a2 --> a22((n/2²));
-a11 --> a111((n/2³));
-a11 --> a112((n/2³));
-a12 --> a121((n/2³));
-a12 --> a122((n/2³));
-a21 --> a211((n/2³));
-a21 --> a212((n/2³));
-a22 --> a221((n/2³));
-a22 --> a222((n/2³));
-a111 -.- d1((...));
-a112 -.- d2((...));
-a121 -.- d3((...));
-a122 -.- d4((...));
-a211 -.- d5((...));
-a212 -.- d6((...));
-a221 -.- d7((...));
-a222 -.- d8((...));
-
-:::
+<Image src={tree} alt="Recursion Tree" width="500" height="500" />
 
 First, we calculate the depth of the tree. The leaf nodes usually have an input size of 1 (base case), so the leaf node can be represented as
 
@@ -118,7 +96,7 @@ Now, we have 3 cases to consider before we can determine the time complexity of 
 
 ### Case 1: Recursive part is polynomially dominant than the non-recursive part
 
-$f(n) = O(n^{\log_b(a)-\epsilon})$ where $\epsilon > 0$
+$f(n) = O(n^{log_b(a)-\epsilon})$ where $\epsilon > 0$
 
 > In this case, the time complexity of the algorithm is $Θ(n^{log_b(a)})$
 

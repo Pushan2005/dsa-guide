@@ -1,0 +1,35 @@
+# Selection Sort
+
+Selection sort is simple. You look for the smallest item in the unsorted part of the list. Once you find it, swap it with the first unsorted item. Repeat this until the whole list is sorted.
+
+## Pseudo Code
+
+```plaintext
+SelectionSort(A)
+  for i = 0 to A.length - 1
+    minIndex = i
+    for j = i + 1 to A.length
+      if A[j] < A[minIndex]
+        minIndex = j
+    swap A[i] with A[minIndex]
+```
+
+## Explanation
+
+1. The `SelectionSort` function takes an array `A` as input.
+2. The outer `for` loop iterates over the array from the first element to the second-to-last element.
+3. The variable `minIndex` is set to the current index.
+4. The inner `for` loop iterates over the unsorted part of the array to find the index of the smallest element.
+5. If a smaller element is found, the `minIndex` is updated.
+6. The smallest element is swapped with the first unsorted element.
+7. The process continues until all elements are sorted.
+
+## Complexity Analysis
+
+-   Running time complexity: O(n^2)
+-   Space complexity: O(1)
+-   Best-case time complexity: O(n^2)
+    > The best-case time complexity occurs when the input array is already sorted.
+-   Average-case time complexity: O(n^2)
+-   Worst-case time complexity: O(n^2)
+    > The worst-case time complexity occurs when the input array is sorted in descending order.

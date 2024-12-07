@@ -1,0 +1,30 @@
+# Bubble Sort
+
+Bubble sort is an easy way to sort a list. It goes through the list over and over. Each time, it looks at two items next to each other. If they are in the wrong order, it swaps them. It keeps doing this until everything is sorted. It's called bubble sort because smaller items bubble up to the top of the list.
+
+## Pseudo Code
+
+```plaintext
+function bubbleSort(arr)
+    n = arr.length
+    for i = 0 to n - 1
+        for j = 0 to n - i - 1
+            if arr[j] > arr[j + 1]
+                swap(arr[j], arr[j + 1])
+```
+
+## Explanation
+
+1. The outer loop goes through the list from the beginning to the end.
+2. The inner loop goes through the list from the beginning to the end minus the current position of the outer loop. This is because after every iteration of the outer loop, the largest element is placed at the end of the list.
+3. If the current element is greater than the next element, they are swapped.
+4. The process is repeated until the list is sorted.
+
+## Complexity Analysis
+
+-   Running time complexity: $O(n^2)$\
+-   Space complexity: $O(1)$
+-   Best-case time complexity: $O(n)$
+    > The best-case time complexity is O(n) when the list is already sorted.
+-   Average-case time complexity: $O(n^2)$
+-   Worst-case time complexity: $O(n^2)$

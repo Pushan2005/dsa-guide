@@ -1,0 +1,41 @@
+# Naive String Matching
+
+Naive string matching is a basic way to find patterns in text. It uses a sliding window method. Here’s how it works: it looks at the pattern and the input string one character at a time. If there's a mismatch, it moves the window over by one character and starts comparing again.
+
+## Pseudo Code
+
+```plaintext
+function naive_string_matching(text, pattern):
+    n = length of text
+    m = length of pattern
+
+    for i from 0 to n - m:
+        j = 0
+        while j < m:
+            j = j + 1
+        if text[j + i] != pattern[j]:
+            break
+        if j == m:
+            return i
+    return -1
+```
+
+## Explanation
+
+1. The function `naive_string_matching` takes two arguments: `text` and `pattern`.
+2. It calculates the length of the text and the pattern.
+3. It iterates through the text from 0 to `n - m`.
+4. For each position `i`, it compares the characters of the text and the pattern.
+5. If there's a mismatch, it moves the window over by one character.
+6. If it finds a match for the entire pattern, it returns the starting index of the match.
+7. If it goes through the entire text without finding a match, it returns `-1`.
+
+## Complexity Analysis
+
+-   Running time of the algorithm: O($(n-m+1) \cdot m$)
+-   Space complexity: O(1)
+-   Best-case time complexity: O(m)
+    > The best case happens when the pattern is found at the beginning of the text.
+-   Average-case time complexity: O($n^2$)
+-   Worst-case time complexity: O($n^2$)
+    > The worst case happens when the pattern is found at the end of the text or when the pattern is not found at all.
