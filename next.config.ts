@@ -1,10 +1,7 @@
 import type { NextConfig } from "next";
 import createMDX from "@next/mdx";
-import postgres from "postgres";
-
-export const sql = postgres(process.env.POSTGRES_URL!, {
-    ssl: "allow",
-});
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
 
 const nextConfig: NextConfig = {
     pageExtensions: ["mdx", "ts", "tsx"],
@@ -12,10 +9,15 @@ const nextConfig: NextConfig = {
     // Note: Using the Rust compiler means we cannot use
     // rehype or remark plugins. For my app, this is fine.
     experimental: {
-        mdxRs: true,
+        mdxRs: false,
     },
 };
 
-const withMDX = createMDX({});
+const withMDX = createMDX({
+    options: {
+        remarkPlugins: [remarkMath],
+        rehypePlugins: [rehypeKatex],
+    },
+});
 
 export default withMDX(nextConfig);
