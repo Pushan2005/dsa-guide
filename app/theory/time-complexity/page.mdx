@@ -1,0 +1,148 @@
+# Time Complexity
+
+Time complexity is a measure of how long it takes to run an algorithm. It is expressed using asymptotic notations as a function of the input size `n`.
+
+Lets go over how we can compute the time complexity of an algorithm. But before we do, we need to understand what our goal is.
+
+-   We want to evaluate the performance of an algorithm when the input size `n` is extremely large (approaches infinity).
+-   For this we must express the growth of the algorithm's running time as the input size grows larger.
+-   We can do this by counting the number of operations the algorithm performs as a function of the input size `n`.
+-   We don't care about the exact running time, only how fast it grows.
+
+Types of algorithms:
+
+-   Iterative algorithms
+-   Recursive algorithms
+
+Finding the time complexity of iterative algorithms is straightforward. Recursive algorithms are a bit more complex, but we can simplify them using the Master Theorem.
+
+---
+
+# Iterative Algorithms
+
+## Finding running time of an algorithm
+
+Consider the following algorithm:
+
+```python
+def process_numbers(n):
+    total = 0                   # 1 operation
+    product = 1                 # 1 operation
+    for i in range(n):          # n iterations
+        total += i              # 1 operation
+        product *= i + 1        # 2 operations
+        total -= i * 2          # 2 operations
+    return total, product       # 1 operation
+```
+
+By counting the number of operations line by line, we can find the running time of the algorithm.
+
+Here, the algorithm has a loop which runs n times. Each iteration of the loop performs 5 operations and there are further 2 operations outside the loop. So, the total number of operations is `5n + 2`.
+
+## Steps to find time complexity from running time
+
+-   The above algorithm has a running time of `5n + 2`
+-   When `n = 1000`, `5n + 2` is approximately equal to 5000.
+-   As `n` grows larger, the additive constant +2 becomes increasingly insignificant. So, we can ignore the constant and simplify the equation to `5n`.
+-   Similarly, when n approaches infinity, the multiplicative constant 5 becomes irrelevant because we only care about the growth rate. Therefore, we can simplify `5n` to just `n`, making the time complexity of this algorithm `O(n)` - linear time.
+
+---
+
+# Recursive Algorithms using Master Theorem (Not advanced master theorem)
+
+Recursive algorithms are analyzed using the Master Theorem. It is a formula that gives us a way to determine the time complexity of recursive algorithms.
+
+To be able to use the Master Theorem, the recursive algorithm must have the following form:
+
+$T(n) = a*T(\frac{n}{b}) + f(n)$
+
+Where:
+
+-   $n$ = input size
+-   $a$ = number of recursive calls at each level **_AND_** $a >= 1$
+-   $b$ = reduction factor of input size **_AND_** $b > 1$
+-   $f(n)$ = work done outside the recursive calls **_AND_** $f(n)$ is a positive function
+
+Here we notice that $T(n)$ is a binomial function.
+
+The first term $a*T(\frac{n}{b})$ represents the work done in the recursive calls and the second term $f(n)$ represents the work done outside the recursive calls.
+
+For the sake of understanding, we will consider a binary search recursive algorithm where the **input size is halved** at each level.
+
+Here is what the recursive tree would look like:
+
+::: mermaid
+graph TD;
+n((n)) --> a1((n/2¹));
+n --> a2((n/2¹));
+a1 --> a11((n/2²));
+a1 --> a12((n/2²));
+a2 --> a21((n/2²));
+a2 --> a22((n/2²));
+a11 --> a111((n/2³));
+a11 --> a112((n/2³));
+a12 --> a121((n/2³));
+a12 --> a122((n/2³));
+a21 --> a211((n/2³));
+a21 --> a212((n/2³));
+a22 --> a221((n/2³));
+a22 --> a222((n/2³));
+a111 -.- d1((...));
+a112 -.- d2((...));
+a121 -.- d3((...));
+a122 -.- d4((...));
+a211 -.- d5((...));
+a212 -.- d6((...));
+a221 -.- d7((...));
+a222 -.- d8((...));
+
+:::
+
+First, we calculate the depth of the tree. The leaf nodes usually have an input size of 1 (base case), so the leaf node can be represented as
+
+### $\frac{n}{b^k} = 1$
+
+, where $k$ is the depth of the tree.
+
+Solving for $b$, we get $k = log_b(n)$.
+
+In the case of our example, the depth of the tree $k$ is equal to $log_2(n)$.
+
+The number of nodes in the tree is $a^k$ or $a^{log_b(n)}$ as each problem is divided into $a$ sub-problems.
+
+$a^{log_b(n)} = n^{log_b(a)}$ (This is derived from the property of logarithms)
+
+Therefore, the recursive part of the algorithm has a complexity of $n^{log_b(a)}$.
+
+Now, we have 3 cases to consider before we can determine the time complexity of the algorithm:
+
+### Case 1: Recursive part is polynomially dominant than the non-recursive part
+
+$f(n) = O(n^{\log_b(a)-\epsilon})$ where $\epsilon > 0$
+
+> In this case, the time complexity of the algorithm is $Θ(n^{log_b(a)})$
+
+### Case 2: Recursive part is equally dominant as the non-recursive part
+
+$f(n) = Θ(n^{log_b(a)} * log^k(n))$ where $k >= 0$
+
+> In this case, the time complexity of the algorithm is $Θ(n^{log_b(a)} * log(n))$
+
+### Case 3: Non-recursive part is more dominant than the recursive part
+
+$f(n) = Ω(n^{log_b(a)+\epsilon})$ where $\epsilon > 0$
+
+> In this case, the time complexity of the algorithm is $Θ(f(n))$
+
+## Solving the time complexity of binary search
+
+Going back to the earlier example of binary search, the running time of the algorithm is given by the recurrence relation: $T(n) = T(\frac{n}{2}) + 1$ where the non-recursive part comes from the comparison operation.
+
+Here, $a = 1$, $b = 2$ and $f(n) = 1$.
+
+Here, the recursive part equates to $n^{log_2(1)} = n^0 = 1$, which falls under Case 2.
+
+Therefore, the time complexity of the binary search is $Θ(n^{log_b(a)}*log(n))$.
+This simplifies to $Θ(log(n))$.
+
+Therefore, the time complexity of the binary search algorithm is $O(log(n))$

@@ -1,0 +1,60 @@
+# Why analyze algorithms?
+
+Certain problems be solved with multiple algorithms. Analyzing them helps us to pick the best solution for our specific use case.
+
+# Asymptotic Notation
+
+It is a way to describe the behavior of a function as the input size `n` approaches infinity. Don't worry, this will make sense soon.
+
+## Types of Asymptotic Notations
+
+### Big O notation - O(n)
+
+This notation gives an upper bound of the growth rate of a function. It describes the **worst-case** scenario.  
+Mathematically,  
+`0 <= f(n) <= c*g(n)` for all n >= n₀, where `c` and `n` are constants.
+
+Denoted as `O(g(n))`, where `n` is the input size.
+
+> Example:  
+> If an algorithm has a running time of `n² + 3`, we say it has a time complexity of `O(n²)`.  
+> Here, g(n) = n², f(n) = n² + 3, there is always a constant `c` such that `n² + 3 <= c*n²` for all positive values of `n`, `c >= 2` when `n = 5`.
+
+### Big Omega notation - Ω(n)
+
+This notation gives a lower bound of the growth rate of a function. It describes the **best-case** scenario.
+Mathematically,  
+`c*g(n) <= f(n)` for all n >= n₀, where `c` and `n₀` are constants.
+
+Denoted as `Ω(g(n))`, where `n` is the input size.
+
+**Note**: f(n) always grows faster or at the same rate as g(n).
+
+Note: By this definition, `Ω(1)` is the best case scenario for any algorithm. But it is not very useful to say that an algorithm has a time complexity of `Ω(1)`, so we always look for the largest possible lower bound from the following list:  
+`Ω(1) < Ω(log n) < Ω(n) < Ω(n log n) < Ω(n²) < Ω(n³) < Ω(2ⁿ) < Ω(n!)`
+
+> Example:  
+> If an algorithm has a running time of `n² + 3`, we say it has a time complexity of `Ω(n²)`.
+> Here, g(n) = n², f(n) = n² + 3, there is always a constant `c` such that `c*n² <= n² + 3` for all positive values of `n`, `c <= 1` when `n = 5`.
+
+### Big Theta notation - Θ(n)
+
+This notation gives a tight bound of the growth rate of a function. It describes the **average-case** scenario.
+Mathematically,  
+`c₁*g(n) <= f(n) <= c₂*g(n)` for all n >= n₀, where `c₁`, `c₂` and `n₀` are constants.
+
+Denoted as `Θ(g(n))`, where `n` is the input size.
+
+---
+
+# Types of performance metrics:
+
+## Time complexity
+
+-   Essentially tells you how long it takes to run the algorithm.
+-   It is expressed using asymptotic notations as a function of the input size `n`.
+
+## Space complexity
+
+-   It tells you how much memory the algorithm uses.
+-   It is also expressed using asymptotic notations as a function of the input size `n`.
