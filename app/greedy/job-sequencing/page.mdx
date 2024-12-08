@@ -1,0 +1,187 @@
+# Job Sequencing with Deadlines
+
+Job Sequencing is a problem where we have a set of jobs, each with a deadline and a profit. The goal is to find the maximum profit by scheduling the jobs in such a way that they are completed before their respective deadlines. We assume that each job takes one unit of time to complete.
+
+<table>
+    <thead>
+        <tr>
+            <th>Job</th>
+            <th>Deadline</th>
+            <th>Profit</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>J1</td>
+            <td>2</td>
+            <td>60</td>
+        </tr>
+        <tr>
+            <td>J2</td>
+            <td>1</td>
+            <td>100</td>
+        </tr>
+        <tr>
+            <td>J3</td>
+            <td>3</td>
+            <td>20</td>
+        </tr>
+        <tr>
+            <td>J4</td>
+            <td>2</td>
+            <td>40</td>
+        </tr>
+        <tr>
+            <td>J5</td>
+            <td>1</td>
+            <td>20</td>
+        </tr>
+    </tbody>
+</table>
+
+## Pseudo Code
+
+```plaintext
+JobSequencing(jobs)
+    sort jobs in decreasing order of profit
+    maxDeadline = maximum deadline in jobs
+    slots = new Array of size maxDeadline
+    for i = 0 to maxDeadline
+        slots[i] = 0
+    for i = 0 to jobs.length
+        for j = jobs[i].deadline downto 1
+            if slots[j] == 0
+                slots[j] = jobs[i].profit
+                break
+    return slots
+```
+
+## Explanation
+
+1. Sort the jobs in decreasing order of profit.
+2. Find the maximum deadline in the jobs array.
+3. Create an array `slots` of size equal to the maximum deadline. This array will store the profit of the job scheduled at each deadline.
+4. Initialize all elements of `slots` to 0 as default.
+5. Go through each job in descending order of profit.
+6. For each job, find the first available slot before its deadline and schedule the job there.
+7. If no slot is available before the deadline, skip the job. (This way, only the most profitable job is scheduled at each deadline.)
+
+## Example
+
+Consider the following set of jobs:
+
+<table>
+    <thead>
+        <tr>
+            <th>Job</th>
+            <th>Deadline</th>
+            <th>Profit</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>J1</td>
+            <td>2</td>
+            <td>60</td>
+        </tr>
+        <tr>
+            <td>J2</td>
+            <td>1</td>
+            <td>100</td>
+        </tr>
+        <tr>
+            <td>J3</td>
+            <td>3</td>
+            <td>20</td>
+        </tr>
+        <tr>
+            <td>J4</td>
+            <td>2</td>
+            <td>40</td>
+        </tr>
+        <tr>
+            <td>J5</td>
+            <td>1</td>
+            <td>20</td>
+        </tr>
+    </tbody>
+</table>
+
+After sorting the jobs in decreasing order of profit, we get:
+
+<table>
+    <thead>
+        <tr>
+            <th>Job</th>
+            <th>Deadline</th>
+            <th>Profit</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>J2</td>
+            <td>1</td>
+            <td>100</td>
+        </tr>
+        <tr>
+            <td>J1</td>
+            <td>2</td>
+            <td>60</td>
+        </tr>
+        <tr>
+            <td>J4</td>
+            <td>2</td>
+            <td>40</td>
+        </tr>
+        <tr>
+            <td>J3</td>
+            <td>3</td>
+            <td>20</td>
+        </tr>
+        <tr>
+            <td>J5</td>
+            <td>1</td>
+            <td>20</td>
+        </tr>
+    </tbody>
+</table>
+
+Now, we can schedule the jobs as follows:
+
+-   Schedule job J2 at the latest available slot before its deadline (i.e., **slot 1**).
+-   Schedule job J1 at the latest available slot before its deadline (i.e., **slot 2**).
+-   Schedule job J3 at the latest available slot before its deadline (i.e., **slot 3**).
+
+<table>
+    <thead>
+        <tr>
+            <th>Job</th>
+            <th>Deadline</th>
+            <th>Profit</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>J2</td>
+            <td>1</td>
+            <td>100</td>
+        </tr>
+        <tr>
+            <td>J1</td>
+            <td>2</td>
+            <td>60</td>
+        </tr>
+        <tr>
+            <td>J3</td>
+            <td>3</td>
+            <td>20</td>
+        </tr>
+    </tbody>
+</table>
+
+The total profit is 180.
+
+## Complexity Analysis
+
+-   Time Complexity: $$O(n^2)$$
+-   Space Complexity: $$O(n)$$

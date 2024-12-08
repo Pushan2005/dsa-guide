@@ -1,0 +1,120 @@
+import Image from "next/image";
+import g1 from "./g1.svg";
+
+# Graph Representations
+
+Graphs can be represented in various ways. Two common representations are the **Adjacency List** and the **Adjacency Matrix**. Below are detailed explanations of both, including diagrams and tables.
+
+Consider the following graph:
+
+<Image src={g1} alt="Graph" />
+
+## Adjacency List Representation
+
+An adjacency list represents a graph as an array of lists. Each list corresponds to a vertex in the graph and contains all the vertices adjacent to it.
+
+### Adjacency List Table
+
+<table>
+    <thead>
+        <tr>
+            <th className="px-4">Vertex</th>
+            <th className="px-4">Adjacent Vertices</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>0</td>
+            <td>1, 2</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>0, 2, 3</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>0, 1, 4</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>2</td>
+        </tr>
+    </tbody>
+</table>
+
+## Adjacency Matrix Representation
+
+An adjacency matrix is a 2D array of size V×V where V is the number of vertices. The element at row i and column j is 1 if there is an edge between vertices i and j, and 0 otherwise.
+
+Using the same graph:
+
+### Adjacency Matrix Table
+
+<table>
+    <thead>
+        <tr>
+            <th className="px-4">Vertex</th>
+            <th className="px-4">0</th>
+            <th className="px-4">1</th>
+            <th className="px-4">2</th>
+            <th className="px-4">3</th>
+            <th className="px-4">4</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <strong>0</strong>
+            </td>
+            <td>0</td>
+            <td>1</td>
+            <td>1</td>
+            <td>0</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td>
+                <strong>1</strong>
+            </td>
+            <td>1</td>
+            <td>0</td>
+            <td>1</td>
+            <td>1</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td>
+                <strong>2</strong>
+            </td>
+            <td>1</td>
+            <td>1</td>
+            <td>0</td>
+            <td>0</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>
+                <strong>3</strong>
+            </td>
+            <td>0</td>
+            <td>1</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td>
+                <strong>4</strong>
+            </td>
+            <td>0</td>
+            <td>0</td>
+            <td>1</td>
+            <td>0</td>
+            <td>0</td>
+        </tr>
+    </tbody>
+</table>

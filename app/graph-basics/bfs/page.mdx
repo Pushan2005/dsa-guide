@@ -1,0 +1,75 @@
+import Image from "next/image";
+import g1 from "../representation/g1.svg";
+
+# Breadth First Search
+
+<br />
+Breadth First Search (BFS) is a graph traversal algorithm that traverses the graph
+level by level. It starts at the source node and explores all the nodes at the present
+depth before moving on to the nodes at the next depth level.
+
+## Pseudo Code
+
+```plaintext
+BFS(G, s)
+    for each vertex u in G
+        u.color = WHITE
+        u.d = INFINITY
+        u.pi = NIL
+    s.color = GRAY
+    s.d = 0
+    s.pi = NIL
+    Q = []
+    ENQUEUE(Q, s)
+    while Q is not empty
+        u = DEQUEUE(Q)
+        for each v in G.Adj[u]
+            if v.color == WHITE
+                v.color = GRAY
+                v.d = u.d + 1
+                v.pi = u
+                ENQUEUE(Q, v)
+        u.color = BLACK
+```
+
+## Explanation
+
+1.  The algorithm starts by initializing all the vertices in the graph with color
+    `WHITE`, distance `INFINITY`, and predecessor `NIL`.
+2.  The source node is colored `GRAY`, distance `0`, and predecessor `NIL`.
+3.  A queue `Q` is initialized and the source node is enqueued.
+4.  The algorithm dequeues a node `u` from the queue and explores all the adjacent
+    nodes of `u`.
+5.  If an adjacent node `v` is `WHITE`, it is colored `GRAY`, its distance is set to
+    `u.d + 1`, and its predecessor is set to `u`.
+6.  The node `u` is colored `BLACK` after all its adjacent nodes are explored.
+
+## Example
+
+Consider the following graph:
+
+<Image src={g1} alt="Graph" />
+
+Starting from node `0`, the BFS traversal of the graph is as follows:
+
+-   Visit node `0` and color it `GRAY`
+-   Enqueue node `0`
+-   Dequeue node `0` and visit its adjacent nodes `1` and `2`
+-   Visit node `1` and color it `GRAY`
+-   Enqueue node `1`
+-   Visit node `2` and color it `GRAY`
+-   Enqueue node `2`
+-   Dequeue node `1` and visit its adjacent nodes `0`, `2`, and `3`
+-   Visit node `3` and color it `GRAY`
+-   Enqueue node `3`
+-   Dequeue node `2` and visit its adjacent nodes `0` and `1`
+-   Dequeue node `3` and visit its adjacent nodes `1`
+-   Dequeue node `0` and visit its adjacent nodes `1` and `2`
+-   Visit node `4` and color it `GRAY`
+-   Enqueue node `4`
+-   Dequeue node `1` and visit its adjacent nodes `0`, `2`, and `3`
+-   Dequeue node `2` and visit its adjacent nodes `0` and `1`
+-   Dequeue node `3` and visit its adjacent nodes `1`
+-   Dequeue node `0` and visit its adjacent nodes `1` and `2`
+-   Dequeue node `4`
+-   The BFS traversal of the graph is complete

@@ -1,0 +1,50 @@
+import Image from "next/image";
+import g1 from "../representation/g1.svg";
+
+# Depth First Search
+
+<br />
+Depth First Search (DFS) is a graph traversal algorithm that explores as far as possible
+along each branch before backtracking. It starts at the source node and explores
+as deep as possible before backtracking to explore other paths.
+
+## Pseudo Code
+
+```plaintext
+DFS(G, u):
+    u.visited = true
+    for each v ∈ G.Adj[u]:
+        if v.visited == false:
+            DFS(G, v)
+
+init():
+    for each u ∈ G:
+        u.visited = false
+    for each u ∈ G:
+        if u.visited == false:
+            DFS(G, u)
+```
+
+## Explanation
+
+1.  The algorithm starts by initializing all the vertices in the graph with `visited = false`.
+2.  The `init` function is called to explore all the connected components in the graph.
+3.  For each vertex `u` in the graph, if it is not visited, the `DFS` function is called to explore the connected component starting from `u`.
+4.  The `DFS` function recursively explores all the adjacent vertices of `u` that have not been visited yet.
+5.  The `visited` flag is used to keep track of visited nodes to avoid revisiting them.
+6.  The algorithm explores the graph in a depth-first manner, visiting nodes as deep as possible before backtracking.
+
+## Example
+
+Consider the following graph:
+
+<Image src={g1} alt="Graph" />
+
+Starting from node `0`, the DFS traversal of the graph is as follows:
+
+-   Visit node `0` and mark it as visited
+-   Explore node `1` and mark it as visited
+-   Explore node `2` and mark it as visited
+-   Explore node `4` and mark it as visited
+-   Backtrack to node `2` and explore node `1`
+-   Explore node `3` and mark it as visited
