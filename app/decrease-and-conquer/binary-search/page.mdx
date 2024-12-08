@@ -1,0 +1,55 @@
+import Image from "next/image";
+import BinarySearch from "./binnary-search-.webp";
+
+# Binary Search
+
+Binary search is a simple way to find an item in a sorted list. It works by splitting the list into two parts.
+
+First, it checks the middle item. If the item you’re looking for is smaller, it focuses on the lower half. If it’s bigger, it looks at the upper half.
+
+This back-and-forth keeps going until it either finds the item or runs out of options.
+
+<div className="flex flex-col items-center">
+    <Image src={BinarySearch} alt="Binary Search Illustration" />
+    <p className="text-center">Image courtesy of GeeksforGeeks</p>
+</div>
+
+## Pseudo Code
+
+```plaintext
+BinarySearch(A, n, x)
+low = 0
+high = n - 1
+while low <= high
+    mid = (low + high) / 2
+    if A[mid] == x
+        return mid
+    else if A[mid] < x
+        low = mid + 1
+    else
+        high = mid - 1
+return -1
+```
+
+## Explanation
+
+-   `A` is the array you’re searching through.
+-   `n` is the number of elements in the array.
+-   `x` is the item you’re looking for.
+
+1.  Set `low` to 0 and `high` to `n - 1`. This sets the search boundary.
+2.  Select the middle element of the array.
+3.  If the middle element is the item you’re looking for, return its index.
+4.  If the middle element is smaller than the item you’re looking for, set `low` to `mid + 1`. This sets the search boundary to the upper half of the array.
+5.  If the middle element is bigger than the item you’re looking for, set `high` to `mid - 1`. This sets the search boundary to the lower half of the array.
+6.  Repeat steps 2-5 until you find the item or run out of options.
+
+## Complexity Analysis
+
+-   Time Complexity: $$O(\log n)$$
+-   Space Complexity: $$O(1)$$
+-   Best Case: $$O(1)$$
+    > The best case occurs when the element you’re looking for is in the middle of the array.
+-   Average Case: $$O(\log n)$$
+-   Worst Case: $$O(\log n)$$
+    > The worst case occurs when the element you’re looking for is at the end of the array.
