@@ -46,7 +46,7 @@ const components = {
         <strong className="font-medium" {...props} />
     ),
     a: (props: ComponentPropsWithoutRef<"em">) => (
-        <a className="font-medium" {...props} />
+        <a className="text-blue-500 hover:text-blue-700" {...props} />
     ),
     code: ({ children, ...props }: ComponentPropsWithoutRef<"code">) => {
         const codeHTML = highlight(children as string);
