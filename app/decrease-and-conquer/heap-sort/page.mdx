@@ -1,0 +1,401 @@
+import Image from "next/image";
+import mh1 from "./(max-heapify)/max-heapify-1.svg";
+import mh2 from "./(max-heapify)/max-heap-2.svg";
+import mh3 from "./(max-heapify)/max-heap-3.svg";
+import mh4 from "./(max-heapify)/max-heap-4.svg";
+
+import bmh1 from "./(build-mh)/bmh-1.svg";
+import bmh2 from "./(build-mh)/bmh-2.svg";
+import bmh3 from "./(build-mh)/bmh-3.svg";
+import bmh4 from "./(build-mh)/bmh-4.svg";
+
+import hs1 from "./(heap-sort)/hs-1.svg";
+import hs2 from "./(heap-sort)/hs-2.svg";
+import hs3 from "./(heap-sort)/hs-3.svg";
+import hs4 from "./(heap-sort)/hs-4.svg";
+
+# Heap Sort
+
+<br />
+
+> This section assumes that you are familiar with the concept of a max heap. If you are not, please go through it first.
+
+Heap sort is a way to sort things using a special data structure called a binary max heap. It works a bit like selection sort. First, we look for the biggest item and put it at the end. Finding that biggest item is easy since it's always the root of the heap.
+
+---
+
+# Prerequisites
+
+To proceed with the explanation, we need to understand the following two concepts:
+
+-   Max Heapify
+-   Build Max Heap
+
+## Max Heapify
+
+This is a recursive algorithm that acts as a helper to the Build Max Heap function which will be covered later constructs a max heap from a given heap.
+
+```plaintext
+MaxHeapify(A, i)
+    left = i.left
+    right = i.right
+
+    if left <= heap-size[A] and A[left] > A[i]
+        largest = left
+    else
+        largest = i
+
+    if right <= heap-size[A] and A[right] > A[largest]
+        largest = right
+
+    if largest != i
+        swap A[i] with A[largest]
+        MaxHeapify(A, largest)
+```
+
+Consider the following example:
+
+<Image src={mh1} alt="Max Heap 1" />
+
+### Build Max Heap
+
+To convert the binary tree into a max heap, we start from the lowest non-leaf node and apply `MaxHeapify` recursively.
+
+<Image src={mh2} alt="Max Heap 2" />
+
+Applying `MaxHeapify` on node A (4):
+
+-   Compare A (4) with its children B (16) and C (10).
+-   Since B (16) is the largest, swap A and B.
+
+Resulting heap:
+
+<Image src={mh3} alt="Max Heap 3" />
+
+Next, apply `MaxHeapify` on node B (4):
+
+-   Compare B (4) with its children D (14) and E (7).
+-   Since D (14) is the largest, swap B and D.
+
+Final max heap:
+
+<Image src={mh4} alt="Max Heap 4" />
+
+---
+
+## Build Max Heap
+
+This is a recursive algorithm that constructs a max heap from a given array using the `MaxHeapify` function.
+
+```plaintext
+BuildMaxHeap(A)
+    heap-size[A] = length[A]
+    for i = length[A]/2 downto 1
+        MaxHeapify(A, i)
+```
+
+Consider the following example:
+
+<table>
+    <tbody>
+        <tr>
+            <td>4</td>
+            <td>1</td>
+            <td>3</td>
+            <td>2</td>
+            <td>16</td>
+            <td>9</td>
+            <td>10</td>
+        </tr>
+    </tbody>
+</table>
+
+<Image src={bmh1} alt="Build Max Heap 1" />
+
+Applying `BuildMaxHeap`:
+
+Applying `BuildMaxHeap` step by step:
+
+### Step 1: MaxHeapify on index 3
+
+-   **Current node**: A[3] = 3
+-   **Left child**: A[6] = 9
+-   **Right child**: A[7] = 10
+-   **Largest value**: 10 at index 7
+
+Swap A[3] with A[7]:
+
+<table>
+    <tbody>
+        <tr>
+            <td>4</td>
+            <td>1</td>
+            <td>10</td>
+            <td>2</td>
+            <td>16</td>
+            <td>9</td>
+            <td>3</td>
+        </tr>
+    </tbody>
+</table>
+
+Updated heap:
+
+<Image src={bmh2} alt="Build Max Heap 2" />
+
+### Step 2: MaxHeapify on index 2
+
+-   **Current node**: A[2] = 1
+-   **Left child**: A[4] = 2
+-   **Right child**: A[5] = 16
+-   **Largest value**: 16 at index 5
+
+Swap A[2] with A[5]:
+
+<table>
+    <tbody>
+        <tr>
+            <td>4</td>
+            <td>16</td>
+            <td>10</td>
+            <td>2</td>
+            <td>1</td>
+            <td>9</td>
+            <td>3</td>
+        </tr>
+    </tbody>
+</table>
+
+Updated heap:
+
+<Image src={bmh3} alt="Build Max Heap 3" />
+
+### Step 3: MaxHeapify on index 1
+
+-   **Current node**: A[1] = 4
+-   **Left child**: A[2] = 16
+-   **Right child**: A[3] = 10
+-   **Largest value**: 16 at index 2
+
+Swap A[1] with A[2]:
+
+<table>
+    <tbody>
+        <tr>
+            <td>16</td>
+            <td>4</td>
+            <td>10</td>
+            <td>2</td>
+            <td>1</td>
+            <td>9</td>
+            <td>3</td>
+        </tr>
+    </tbody>
+</table>
+
+Final max heap:
+
+<Image src={bmh4} alt="Build Max Heap 4" />
+
+At this point, the array represents a max heap.
+
+---
+
+# Heap Sort Algorithm
+
+## Pseudo Code
+
+```plaintext
+HeapSort(A)
+    BuildMaxHeap(A)
+    for i = length[A] downto 2
+        swap A[1] with A[i]
+        heap-size[A] = heap-size[A] - 1
+        MaxHeapify(A, 1)
+```
+
+## Explaination
+
+1.  Build a max heap from the input data.
+2.  Swap the first element with the last element and reduce the heap size by 1. This will move the largest element to the end of the array. The end of the array is now sorted.
+3.  Apply `MaxHeapify` on the root node to maintain the max heap property.
+4.  Repeat steps 2 and 3 until the heap size is 1.
+
+## Example
+
+We will now perform heap sort on the array step by step.
+
+### Initial Max Heap
+
+The array is already a max heap:
+
+<Image src={hs1} alt="Heap Sort 1" />
+
+### Step 1: Swap and Heapify
+
+Swap the root (16) with the last element (1):
+
+<table>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>14</td>
+            <td>10</td>
+            <td>8</td>
+            <td>7</td>
+            <td>9</td>
+            <td>3</td>
+            <td>2</td>
+            <td>4</td>
+            <td className="bg-green-400">16</td>
+        </tr>
+    </tbody>
+</table>
+
+Heap size reduces to 9. Apply `MaxHeapify` at index 1:
+
+-   Swap 1 and 14.
+-   Swap 1 and 8.
+-   Swap 1 and 4.
+
+Array after `MaxHeapify`:
+
+<table>
+    <tbody>
+        <tr>
+            <td>14</td>
+            <td>8</td>
+            <td>10</td>
+            <td>4</td>
+            <td>7</td>
+            <td>9</td>
+            <td>3</td>
+            <td>2</td>
+            <td>1</td>
+            <td className="bg-green-400">16</td>
+        </tr>
+    </tbody>
+</table>
+
+Updated heap:
+
+<Image src={hs2} alt="Heap Sort 2" />
+
+### Step 2: Swap and Heapify
+
+Swap the root (14) with element at index 9 (1):
+
+<table>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>8</td>
+            <td>10</td>
+            <td>4</td>
+            <td>7</td>
+            <td>9</td>
+            <td>3</td>
+            <td>2</td>
+            <td className="bg-green-400">14</td>
+            <td className="bg-green-400">16</td>
+        </tr>
+    </tbody>
+</table>
+
+Heap size reduces to 8. Apply `MaxHeapify` at index 1:
+
+-   Swap 1 and 10.
+-   Swap 1 and 9.
+
+Array after `MaxHeapify`:
+
+<table>
+    <tbody>
+        <tr>
+            <td>10</td>
+            <td>8</td>
+            <td>9</td>
+            <td>4</td>
+            <td>7</td>
+            <td>1</td>
+            <td>3</td>
+            <td>2</td>
+            <td className="bg-green-400">14</td>
+            <td className="bg-green-400">16</td>
+        </tr>
+    </tbody>
+</table>
+
+Updated heap:
+
+<Image src={hs3} alt="Heap Sort 3" />
+
+### Step 3: Swap and Heapify
+
+Swap the root (10) with element at index 8 (2):
+
+<table>
+    <tbody>
+        <tr>
+            <td>2</td>
+            <td>8</td>
+            <td>9</td>
+            <td>4</td>
+            <td>7</td>
+            <td>1</td>
+            <td>3</td>
+            <td className="bg-green-400">10</td>
+            <td className="bg-green-400">14</td>
+            <td className="bg-green-400">16</td>
+        </tr>
+    </tbody>
+</table>
+
+Heap size reduces to 7. Apply `MaxHeapify` at index 1:
+
+-   Swap 2 and 9.
+-   Swap 2 and 3.
+
+Array after `MaxHeapify`:
+
+<table>
+    <tbody>
+        <tr>
+            <td>9</td>
+            <td>8</td>
+            <td>3</td>
+            <td>4</td>
+            <td>7</td>
+            <td>1</td>
+            <td>2</td>
+            <td className="bg-green-400">10</td>
+            <td className="bg-green-400">14</td>
+            <td className="bg-green-400">16</td>
+        </tr>
+    </tbody>
+</table>
+
+Updated heap:
+
+<Image src={hs4} alt="Heap Sort 4" />
+
+### Final Sorted Array
+
+Repeat these steps until the heap size is 1:
+
+<table>
+    <tbody>
+        <tr>
+            <td className="bg-green-400">1</td>
+            <td className="bg-green-400">2</td>
+            <td className="bg-green-400">3</td>
+            <td className="bg-green-400">4</td>
+            <td className="bg-green-400">7</td>
+            <td className="bg-green-400">8</td>
+            <td className="bg-green-400">9</td>
+            <td className="bg-green-400">10</td>
+            <td className="bg-green-400">14</td>
+            <td className="bg-green-400">16</td>
+        </tr>
+    </tbody>
+</table>

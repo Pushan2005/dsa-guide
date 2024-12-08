@@ -31,6 +31,7 @@ const components = {
     p: (props: ParagraphProps) => (
         <p className="text-gray-800 leading-snug" {...props} />
     ),
+    hr: () => <hr className="border-gray-300 border-2 my-8" />,
     ol: (props: ListProps) => (
         <ol className="text-gray-800 list-decimal pl-5 space-y-2" {...props} />
     ),
