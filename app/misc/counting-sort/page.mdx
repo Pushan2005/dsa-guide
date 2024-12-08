@@ -1,0 +1,112 @@
+# Counting Sort
+
+Counting sort is a way to sort a group of numbers. It works by counting how many times each number shows up in the list. This method works best when the numbers aren't spread out too much compared to how many items you have.
+
+## Pseudo Code
+
+```plaintext
+CountingSort(A):
+    n = A.length
+    k = max(A)
+    output = new Array(n)
+    frequencyArr = new Array(k+1)
+    // Initialize frequency array with zeros
+    for i = 0 to k:
+        frequencyArr[i] = 0
+
+    // Count frequency of each number
+    for i = 0 to n-1:
+        frequencyArr[A[i]] += 1
+
+    // Build output array
+    for i = 0 to k:
+        for j = 0 to frequencyArr[i]-1:
+            output.append(i)
+    return output
+
+```
+
+## Explanation
+
+1.  Find the maximum value in the input array and store it in `k`.
+2.  Create an array `frequencyArr` of size `k+1` and initialize all elements to 0.
+3.  Count the frequency of each element in the input array and store it in `frequencyArr`.
+4.  Build the output array by appending the element `i` `frequencyArr[i]` times.
+5.  Return the output array.
+
+## Example
+
+Consider the following array:
+
+<table>
+    <tbody>
+        <tr>
+            <td>3</td>
+            <td>4</td>
+            <td>1</td>
+            <td>3</td>
+            <td>2</td>
+            <td>5</td>
+            <td>2</td>
+            <td>8</td>
+        </tr>
+    </tbody>
+</table>
+
+The maximum value in the array is 8. The frequency array will look like this:
+
+<table>
+    <tbody>
+        <tr>
+            <th>Index</th>
+            <td>0</td>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+        </tr>
+        <tr>
+            <th>Frequency</th>
+            <td>0</td>
+            <td>1</td>
+            <td>2</td>
+            <td>2</td>
+            <td>1</td>
+            <td>1</td>
+            <td>0</td>
+            <td>0</td>
+            <td>1</td>
+        </tr>
+    </tbody>
+</table>
+
+Step by step building of output array:
+
+1. Add 1 once (frequency = 1)
+2. Add 2 twice (frequency = 2)
+3. Add 3 twice (frequency = 2)
+4. Add 4 once (frequency = 1)
+5. Add 5 once (frequency = 1)
+6. Skip 6 and 7 (frequency = 0)
+7. Add 8 once (frequency = 1)
+
+After building the output array by appending each index according to its frequency, we get:
+
+<table>
+    <tbody>
+        <tr>
+            <td className="bg-green-400">1</td>
+            <td className="bg-green-400">2</td>
+            <td className="bg-green-400">2</td>
+            <td className="bg-green-400">3</td>
+            <td className="bg-green-400">3</td>
+            <td className="bg-green-400">4</td>
+            <td className="bg-green-400">5</td>
+            <td className="bg-green-400">8</td>
+        </tr>
+    </tbody>
+</table>
