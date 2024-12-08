@@ -1,0 +1,44 @@
+import Image from "next/image";
+import MergeSort from "./merge-sort.png";
+
+# Merge Sort
+
+Merge Sort is a divide and conquer algorithm that divides the input array into two halves, recursively sorts the two halves, and then merges the sorted halves.
+
+<div className="flex flex-col items-center">
+    <Image src={MergeSort} alt="Merge Sort Illustration" />
+    <p className="text-center">Image courtesy of BaseCS101 on Medium</p>
+</div>
+
+## Psuedo Code
+
+```plaintext
+MergeSort(array)
+    if array.length <= 1
+        return array
+    else
+    if array.length > 1
+        mid = array.length / 2
+        left = MergeSort(array[0...mid])
+        right = MergeSort(array[mid...array.length])
+        return Merge(left, right)
+```
+
+## Explanation
+
+1. The `MergeSort` function takes an array `array` as input.
+2. If the length of the array is less than or equal to 1, the array is returned as it is. This is the **base case** for the recursion.
+3. If the length of the array is greater than 1, the array is divided into two halves.
+4. The `MergeSort` function is called recursively on the left and right halves of the array.
+5. The `Merge` function is called to merge the sorted left and right halves.
+6. The process continues until all elements are sorted.
+
+## Complexity Analysis
+
+-   Running time complexity: O(n log n)
+-   Space complexity: O(n)
+-   Best-case time complexity: O(n log n)
+    > The best-case occurs when the input array is already sorted.
+-   Average-case time complexity: O(n log n)
+-   Worst-case time complexity: O(n log n)
+    > The worst-case occurs when the input array is sorted in descending order.

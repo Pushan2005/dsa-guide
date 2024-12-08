@@ -1,0 +1,51 @@
+import Image from "next/image";
+import quickSort from "./quick-sort.jpg";
+
+# Quick Sort
+
+Quick Sort is a sorting method. It works by picking a 'pivot' from the array. Then, it puts the pivot in the right spot. All smaller items go on the left. All bigger items end up on the right. The sub-arrays to the left and right of the pivot are then sorted recursively.
+
+<div className="flex flex-col items-center">
+    <Image src={quickSort} alt="Quick Sort Illustration" />
+    <p className="text-center">Image courtesy of EnjoyAlgorithms</p>
+</div>
+
+## Pseudocode
+
+```plaintext
+function quickSort(arr, left, right)
+    if left < right
+        pivotIndex = partition(arr, left, right)
+        quickSort(arr, left, pivotIndex - 1)
+        quickSort(arr, pivotIndex + 1, right)
+
+function partition(arr, left, right)
+    pivot = arr[right]
+    i = left - 1
+    for j = left to right - 1
+        if arr[j] < pivot
+            i++
+            swap arr[i] and arr[j]
+    swap arr[i + 1] and arr[right]
+    return i + 1
+```
+
+## Explanation
+
+1. The `quickSort` function takes an array, a left index, and a right index as arguments.
+2. If the left index is less than the right index, it calls the `partition` function to find the pivot index.
+3. It then recursively calls `quickSort` on the left and right sub-arrays.
+4. The `partition` function takes an array, a left index, and a right index as arguments.
+5. It selects the pivot as the last element of the array.
+6. It initializes an index `i` to the left - 1.
+7. It iterates through the array from the left to the second-to-last element.
+8. If the current element is less than the pivot, it increments `i` and swaps the current element with the element at index `i`.
+9. After the loop, it swaps the pivot with the element at index `i + 1` and returns `i + 1` as the pivot index.
+
+## Complexity Analysis
+
+-   Running Time: O(n log n)
+-   Space Complexity: O(log n)
+-   Worst-case: O(n^2)
+-   Average-case: O(n log n)
+-   Best-case: O(n log n)
