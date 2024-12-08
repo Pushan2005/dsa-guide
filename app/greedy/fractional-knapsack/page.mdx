@@ -1,0 +1,131 @@
+# Fractional Knapsack
+
+Given weights and values of n items, we need to put these items in a knapsack of capacity W to get the maximum total value in the knapsack. In the fractional knapsack, we can break items for maximizing the total value of knapsack. This problem can be solved by greedy strategy.
+
+## Pseudo Code
+
+```plaintext
+FractionalKnapsack(W, wt[], val[], n)
+    for i = 1 to n
+        ratio[i] = val[i] / wt[i]
+    sort ratio[] in descending order
+    totalValue = 0
+    for i = 1 to n
+        if wt[i] <= W
+        W = W - wt[i]
+        totalValue = totalValue + val[i]
+        else
+        totalValue = totalValue + val[i] * (W / wt[i])
+        break
+    return totalValue
+```
+
+## Explanation
+
+1. Calculate the ratio of value to weight for each item.
+2. Sort all items in decreasing order of this ratio.
+3. Initialize the total value of knapsack as 0.
+4. Loop through all items in descending order and keep adding the value of items to the total value of knapsack until the capacity of knapsack is full.
+
+## Example
+
+<table className="w-full">
+    <tbody>
+        <tr>
+            <th className="px-6 py-2">Item</th>
+            <th className="px-6 py-2">Weight</th>
+            <th className="px-6 py-2">Value</th>
+        </tr>
+        <tr>
+            <td className="px-6 py-2">1</td>
+            <td className="px-6 py-2">10</td>
+            <td className="px-6 py-2">60</td>
+        </tr>
+        <tr>
+            <td className="px-6 py-2">2</td>
+            <td className="px-6 py-2">20</td>
+            <td className="px-6 py-2">100</td>
+        </tr>
+        <tr>
+            <td className="px-6 py-2">3</td>
+            <td className="px-6 py-2">30</td>
+            <td className="px-6 py-2">120</td>
+        </tr>
+    </tbody>
+</table>
+
+Capacity of knapsack, W = 50
+
+Calculating the ratio of value to weight for each item:
+
+<table className="w-full">
+    <tbody>
+        <tr>
+            <th className="px-6 py-2">Item</th>
+            <th className="px-6 py-2">Weight</th>
+            <th className="px-6 py-2">Value</th>
+            <th className="px-6 py-2">Ratio</th>
+        </tr>
+        <tr>
+            <td className="px-6 py-2">1</td>
+            <td className="px-6 py-2">10</td>
+            <td className="px-6 py-2">60</td>
+            <td className="px-6 py-2">6</td>
+        </tr>
+        <tr>
+            <td className="px-6 py-2">2</td>
+            <td className="px-6 py-2">20</td>
+            <td className="px-6 py-2">100</td>
+            <td className="px-6 py-2">5</td>
+        </tr>
+        <tr>
+            <td className="px-6 py-2">3</td>
+            <td className="px-6 py-2">30</td>
+            <td className="px-6 py-2">120</td>
+            <td className="px-6 py-2">4</td>
+        </tr>
+    </tbody>
+</table>
+
+Sorting items in descending order of ratio:
+
+<table className="w-full">
+    <tbody>
+        <tr>
+            <th className="px-6 py-2">Item</th>
+            <th className="px-6 py-2">Weight</th>
+            <th className="px-6 py-2">Value</th>
+            <th className="px-6 py-2">Ratio</th>
+        </tr>
+        <tr>
+            <td className="px-6 py-2">1</td>
+            <td className="px-6 py-2">10</td>
+            <td className="px-6 py-2">60</td>
+            <td className="px-6 py-2">6</td>
+        </tr>
+        <tr>
+            <td className="px-6 py-2">2</td>
+            <td className="px-6 py-2">20</td>
+            <td className="px-6 py-2">100</td>
+            <td className="px-6 py-2">5</td>
+        </tr>
+        <tr>
+            <td className="px-6 py-2">3</td>
+            <td className="px-6 py-2">30</td>
+            <td className="px-6 py-2">120</td>
+            <td className="px-6 py-2">4</td>
+        </tr>
+    </tbody>
+</table>
+
+Now, we will start adding the items to the knapsack:
+
+-   Add item 1 to the knapsack. Remaining capacity of knapsack = 50 - 10 = 40. Total value = 60.
+-   Add item 2 to the knapsack. Remaining capacity of knapsack = 40 - 20 = 20. Total value = 160.
+-   Add item 3 to the knapsack. Remaining capacity of knapsack = 20 - 20 = 0. Total value = 280.
+-   Knapsack is full. Total value = 280.
+
+## Complexity Analysis
+
+-   Time Complexity: $$O(n \log n)$$
+-   Space Complexity: $$O(n)$$
