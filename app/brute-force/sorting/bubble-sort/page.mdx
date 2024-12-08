@@ -2,6 +2,118 @@
 
 Bubble sort is an easy way to sort a list. It goes through the list over and over. Each time, it looks at two items next to each other. If they are in the wrong order, it swaps them. It keeps doing this until everything is sorted. It's called bubble sort because smaller items bubble up to the top of the list.
 
+<table>
+    <tbody>
+        <tr>
+            <td className="bg-amber-600">5</td>
+            <td className="bg-amber-600">3</td>
+            <td>13</td>
+            <td>2</td>
+            <td>11</td>
+            <td>4</td>
+            <td>7</td>
+        </tr>
+    </tbody>
+</table>
+
+5 and 3 are in the wrong order, so they are swapped.
+
+<table>
+    <tbody>
+        <tr>
+            <td>3</td>
+            <td className="bg-amber-600">5</td>
+            <td className="bg-amber-600">13</td>
+            <td>2</td>
+            <td>11</td>
+            <td>4</td>
+            <td>7</td>
+        </tr>
+    </tbody>
+</table>
+
+5 and 13 are in the right order, so they are not swapped.
+
+<table>
+    <tbody>
+        <tr>
+            <td>3</td>
+            <td>5</td>
+            <td className="bg-amber-600">13</td>
+            <td className="bg-amber-600">2</td>
+            <td>11</td>
+            <td>4</td>
+            <td>7</td>
+        </tr>
+    </tbody>
+</table>
+
+13 and 2 are in the wrong order, so they are swapped.
+
+<table>
+    <tbody>
+        <tr>
+            <td>3</td>
+            <td>5</td>
+            <td>2</td>
+            <td className="bg-amber-600">13</td>
+            <td className="bg-amber-600">11</td>
+            <td>4</td>
+            <td>7</td>
+        </tr>
+    </tbody>
+</table>
+
+13 and 11 are in the wrong order, so they are swapped.
+
+<table>
+    <tbody>
+        <tr>
+            <td>3</td>
+            <td>5</td>
+            <td>2</td>
+            <td>11</td>
+            <td className="bg-amber-600">13</td>
+            <td className="bg-amber-600">4</td>
+            <td>7</td>
+        </tr>
+    </tbody>
+</table>
+
+13 and 4 are in the wrong order, so they are swapped.
+
+<table>
+    <tbody>
+        <tr>
+            <td>3</td>
+            <td>5</td>
+            <td>2</td>
+            <td>11</td>
+            <td>4</td>
+            <td className="bg-amber-600">13</td>
+            <td className="bg-amber-600">7</td>
+        </tr>
+    </tbody>
+</table>
+
+13 and 7 are in the wrong order, so they are swapped.
+
+<table>
+    <tbody>
+        <tr>
+            <td>3</td>
+            <td>5</td>
+            <td>2</td>
+            <td>11</td>
+            <td>4</td>
+            <td>7</td>
+            <td className="bg-green-600">13</td>
+        </tr>
+    </tbody>
+</table>
+
+The last element is now in the right place. The process is repeated until the remaining elements are sorted.
+
 ## Pseudo Code
 
 ```plaintext

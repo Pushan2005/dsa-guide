@@ -1,6 +1,17 @@
+import Image from "next/image";
+import naive_string_matching from "./string-matching.png";
+
 # Naive String Matching
 
 Naive string matching is a basic way to find patterns in text. It uses a sliding window method. Here’s how it works: it looks at the pattern and the input string one character at a time. If there's a mismatch, it moves the window over by one character and starts comparing again.
+
+<div className="flex flex-col items-center">
+    <Image
+        src={naive_string_matching}
+        alt="Naive String Matching Illustration"
+    />
+    <p className="text-center">Image courtesy of ResearchGate</p>
+</div>
 
 ## Pseudo Code
 
