@@ -1,0 +1,44 @@
+# Strassen's Matrix Multiplication
+
+Strassen's matrix multiplication is a divide and conquer algorithm that multiplies two square matrices.
+
+## Pseudo Code
+
+$$A = \begin{bmatrix} a & b \\ c & d \end{bmatrix}$$
+
+$$B = \begin{bmatrix} e & f \\ g & h \end{bmatrix}$$
+
+---
+
+$$p1 = a(f - h)$$
+
+$$p2 = (a + b)h$$
+
+$$p3 = (c + d)e$$
+
+$$p4 = d(g - e)$$
+
+$$p5 = (a + d)(e + h)$$
+
+$$p6 = (b - d)(g + h)$$
+
+$$p7 = (a - c)(e + f)$$
+
+---
+
+$$A \times B = \begin{bmatrix} p5 + p4 - p2 + p6 & p1 + p2 \\ p3 + p4 & p1 + p5 - p3 - p7 \end{bmatrix}$$
+
+> Formula should be given in the exam, so you don't need to remember it.
+
+## Explanation
+
+1. Divide the matrices into four submatrices of size $n/2 \times n/2.$
+2. Calculate the seven products recursively.
+3. Combine the seven products according to the formula.
+4. The final matrix is the product of the two matrices.
+
+## Complexity Analysis
+
+-   Time Complexity: $O(n^2.81)$
+-   Space Complexity: $O(n^2)$
+-   The naive matrix multiplication algorithm has a time complexity of $O(n^3).$
