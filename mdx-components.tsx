@@ -45,34 +45,9 @@ const components = {
     strong: (props: ComponentPropsWithoutRef<"strong">) => (
         <strong className="font-medium" {...props} />
     ),
-    a: ({ href, children, ...props }: AnchorProps) => {
-        const className = "text-blue-500 hover:text-blue-700";
-        if (href?.startsWith("/")) {
-            return (
-                <Link href={href} className={className} {...props}>
-                    {children}
-                </Link>
-            );
-        }
-        if (href?.startsWith("#")) {
-            return (
-                <a href={href} className={className} {...props}>
-                    {children}
-                </a>
-            );
-        }
-        return (
-            <a
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={className}
-                {...props}
-            >
-                {children}
-            </a>
-        );
-    },
+    a: (props: ComponentPropsWithoutRef<"em">) => (
+        <a className="font-medium" {...props} />
+    ),
     code: ({ children, ...props }: ComponentPropsWithoutRef<"code">) => {
         const codeHTML = highlight(children as string);
         return (
